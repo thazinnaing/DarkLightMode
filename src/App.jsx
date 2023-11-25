@@ -1,29 +1,21 @@
-import React, { createContext } from 'react';
-import Page from './components/Page';
-import { useState } from 'react';
-
-export const ThemeContext = createContext(null);
+import React, { useEffect } from 'react';
+import Page from './Pages/DarkMode';
 
 const App = () => {
 
-  const [theme, setTheme]=useState("light");
-
-  console.log("theme", theme)
-
-  const toggleTheme=()=>{
-    setTheme(current => current === "light" ? "dark" : "light");
-  }
+  useEffect(() => {
+    if(localStorage.theme === 'dark' || (!(localStorage.theme) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    }else {
+      document.documentElement.classList.remove('dark');
+    }
+  },[])
   
 
   return (
-    <ThemeContext.Provider value={{theme, toggleTheme}}>
-
-      <div class={` w-full h-screen flex flex-col justify-center items-center bg-${theme}`} >
-        <Page/>
-      </div>
-
-    </ThemeContext.Provider>
-    
+    <div>
+      <Page/>
+    </div>
   );
 }
 
