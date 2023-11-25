@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { isDark, toggleTheme } from '../utils/colorScheme';
+import { toggleTheme } from '../utils/colorScheme';
 import Box from '../components/BoxOne';
 import BoxTwo from '../components/BoxTwo';
 import Text from '../components/Text';
