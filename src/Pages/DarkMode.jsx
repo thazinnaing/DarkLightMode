@@ -7,8 +7,13 @@ import { faMoon } from '@fortawesome/free-solid-svg-icons';
 import { faSun } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const Page = () => {
-  console.log("darklight", isDark())
+const DarkModePage = ({setTheme}) => {
+
+  const clickHandler=()=>{
+    toggleTheme();
+    setTheme(current=>!current);
+
+  }
 
   return (
     <Box>
@@ -16,12 +21,10 @@ const Page = () => {
             Light and Dark Mode
         </BoxTwo>
         <div className="flex gap-3">
-            {/* <input className="w-5 h-5" type="checkbox" onClick={toggleTheme} /> */}
-            <div onClick={toggleTheme}>
+            <div onClick={clickHandler} className="w-5 h-5 mt-1 text-dark dark:text-light">
             {
-              isDark() ? <FontAwesomeIcon className="w-5 h-5 mt-1 text-light" icon={faMoon} /> : <FontAwesomeIcon className="w-5 h-5 mt-1 text-dark" icon={faSun} />
+              isDark() ? <FontAwesomeIcon icon={faMoon} /> : <FontAwesomeIcon icon={faSun} />
             }
-
             </div>     
             <Text>{isDark() ? "Darkmode" : "Lightmode"}</Text>
         </div>
@@ -31,4 +34,4 @@ const Page = () => {
   );
 }
 
-export default Page;
+export default DarkModePage;

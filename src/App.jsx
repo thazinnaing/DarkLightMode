@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import Page from './Pages/DarkMode';
+import DarkModePage from './Pages/DarkMode';
 
 const App = () => {
+
+  const [theme, setTheme]= useState(true);
   
   useEffect(() => {
     if(localStorage.theme === 'dark' || (!(localStorage.theme) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -14,7 +16,7 @@ const App = () => {
 
   return (
     <div>
-      <Page/>
+      <DarkModePage setTheme={setTheme}/>
     </div>
   );
 }
