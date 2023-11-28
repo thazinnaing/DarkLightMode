@@ -10,6 +10,11 @@ export default {
       colors: {
         "dark": "#202225",
         "light": "#fff5ee",
+        "pink" : "#F41B9F",
+        "gold": "#FF9C1C",
+        "red" : "#ff0000",
+        "green" : "#7CC511",
+        "orchid": "#DFECCD"
       }
     },
   },

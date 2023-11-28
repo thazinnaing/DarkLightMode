@@ -18,10 +18,14 @@ const DarkModePage = ({setTheme}) => {
   return (
     <Box>
         <BoxTwo>
-            Light and Dark Mode
+            <Text level="5">Light and Dark Mode</Text>
         </BoxTwo>
+        <Text>I am Light mode.</Text>
+        <Text level="2">I am Dark mode.</Text>
+        <Text level="3">Which one am I?</Text>
+        <Text level="4">Please let me know.</Text>
         <div className="flex gap-3">
-            <div onClick={clickHandler} className="w-5 h-5 mt-1 text-dark dark:text-light">
+            <div onClick={clickHandler} className="w-5 h-5 text-dark dark:text-light">
             {
               isDark() ? <FontAwesomeIcon icon={faMoon} /> : <FontAwesomeIcon icon={faSun} />
             }
