@@ -1,22 +1,18 @@
-import React, { useContext } from 'react';
+import React, { useCallback } from 'react';
 import { isDark, toggleTheme } from '../utils/colorScheme';
-import Box from '../components/BoxOne';
+import Container from '../components/Container';
 import BoxTwo from '../components/BoxTwo';
 import Text from '../components/Text';
 import { faMoon } from '@fortawesome/free-solid-svg-icons';
 import { faSun } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const DarkModePage = ({setTheme}) => {
+const DarkModePage = () => {
+  console.log("dark", isDark)
 
-  const clickHandler=()=>{
-    toggleTheme();
-    setTheme(current=>!current);
-
-  }
-
+  const clickHandler=(useCallback(toggleTheme));
   return (
-    <Box>
+    <Container>
         <BoxTwo>
             <Text level="5">Light and Dark Mode</Text>
         </BoxTwo>
@@ -27,13 +23,13 @@ const DarkModePage = ({setTheme}) => {
         <div className="flex gap-3">
             <div onClick={clickHandler} className="w-5 h-5 text-dark dark:text-light">
             {
-              isDark() ? <FontAwesomeIcon icon={faMoon} /> : <FontAwesomeIcon icon={faSun} />
+              isDark ? <FontAwesomeIcon icon={faMoon} /> : <FontAwesomeIcon icon={faSun} />
             }
             </div>     
-            <Text>{isDark() ? "Darkmode" : "Lightmode"}</Text>
+            <Text>{isDark ? "Darkmode" : "Lightmode"}</Text>
         </div>
        
-    </Box>
+    </Container>
     
   );
 }

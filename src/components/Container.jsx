@@ -1,4 +1,4 @@
-const Box = ({children}) => {
+const Container = ({children}) => {
     return (
         <div className={`w-full h-screen flex flex-col gap-4 justify-center items-center bg-light dark:bg-dark `}>
             {children}
@@ -6,4 +6,4 @@ const Box = ({children}) => {
     )
 }
 
-export default Box;
+export default Container;

@@ -1,5 +1,5 @@
 export const toggleTheme=()=>{
-    if (isDark()){
+    if (isDark){
       document.documentElement.classList.remove('dark');
       localStorage.setItem('theme', 'light')
       
@@ -9,6 +9,4 @@ export const toggleTheme=()=>{
     }
   }
 
-  export const isDark = () => {
-    return localStorage.theme === 'dark'
-  }
+  export const isDark = (localStorage.theme === 'dark');
