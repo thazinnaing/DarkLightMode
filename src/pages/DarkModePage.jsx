@@ -1,20 +1,19 @@
-import React, { useContext } from 'react';
 import Container from '../components/Container';
 import Box from '../components/Box';
 import Text from '../components/Text';
 import { faMoon } from '@fortawesome/free-solid-svg-icons';
 import { faSun } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { themeContext } from '../App';
-import {toggleTheme} from "../utils/ColorScheme"
+import { useColorScheme } from '../utils/ColorScheme';
+
 
 const DarkModePage = () => {
-  const {theme, themeSetter}= useContext(themeContext);
+  const {setTheme, isDark}= useColorScheme();
 
   const clickHandler=()=>{
-    toggleTheme();
-    themeSetter();
+    setTheme(isDark ? "light" : "dark")
   }
+
 
   return (
     <Container>
@@ -28,10 +27,10 @@ const DarkModePage = () => {
         <div className="flex gap-3">
             <div onClick={clickHandler} className="w-5 h-5 text-dark dark:text-light">
             {
-              theme ? <FontAwesomeIcon icon={faMoon} /> : <FontAwesomeIcon icon={faSun} />
+              isDark ? <FontAwesomeIcon icon={faMoon} /> : <FontAwesomeIcon icon={faSun} />
             }
             </div>     
-            <Text>{theme ? "Darkmode" : "Lightmode"}</Text>
+            <Text>{isDark ? "Darkmode" : "Lightmode"}</Text>
         </div>
        
     </Container>

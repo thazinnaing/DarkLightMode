@@ -1,15 +1,36 @@
-export const toggleTheme=()=>{
-  const {isDark}=useColorScheme();
-    if (isDark){
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light')
-    }else {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark')
-    }
-  }
+import { createContext, useCallback, useContext, useEffect, useState } from "react";
 
-  export const useColorScheme= ()=>{
-    const isDark= localStorage.getItem("theme") === "dark";
-    return {isDark};
-  }
+const ColorSchemeContext= createContext(null);
+
+const useColorSchemeContext=()=>useContext(ColorSchemeContext);
+
+export const useColorScheme= ()=>{
+
+  const {theme, setTheme}= useColorSchemeContext();
+  const isDark = theme === "dark";
+  return {theme, setTheme, isDark}
+}
+
+export const ColorSchemeContextProvider=({children})=>{
+  const [scheme, setScheme]= useState(localStorage.getItem("theme"));
+
+  const setTheme=(useCallback((theme)=>{
+    setScheme(theme);
+  },[]))
+
+  useEffect(()=>{
+    if(scheme === "dark" || ( !(localStorage.getItem("theme")) && window.matchMedia('(prefers-color-scheme: dark)').matches)){
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    }else{
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light")
+    }
+  },[scheme])
+
+  return(
+    <ColorSchemeContext.Provider value={{theme: scheme, setTheme}}>
+      {children}
+    </ColorSchemeContext.Provider>
+  )
+}
